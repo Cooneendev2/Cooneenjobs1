@@ -1,0 +1,83 @@
+/* Themes: every theme sets the same set of colour tokens. Nothing else in the CSS contains a colour.
+   Selected with ?theme=cooneen | dark | light | highcontrast | portal
+   (set on <html data-theme="..."> by early.js / main.js).
+
+   Tokens
+     bg-1 bg-2        stage background gradient           twill   faint diagonal cloth texture
+     on-bg  on-bg-2   text on the background / muted      rule    dashed "stitch" lines on the background
+     surface ink ink-2 line stitch    card colours (text, muted text, dashed divider, inner stitch)
+     accent accent-ink on-accent       teal-style accent (fill on bg, text on surface, text on fill)
+     gold on-gold     Featured badge
+     warn on-warn warn-ink warn-text   Closing soon (fill, text on fill, text on surface, text on background)
+     new on-new       New badge
+     seg-bg           empty paging segments               focus   keyboard focus ring on the background
+     focus-s          focus ring on a white card / list row
+     ticker-*         ticker strip colours (ticker-warn = warning icon)   card-border-w  extra card outline (high contrast only)
+   tests/contrast.mjs checks the contrast of every pair of these tokens for every theme. */
+
+:root,
+:root[data-theme="cooneen"] {
+  --bg-1: #0b1f33; --bg-2: #0e2c4a; --twill: rgba(255, 255, 255, 0.04);
+  --on-bg: #ffffff; --on-bg-2: #b9c8da; --rule: rgba(255, 255, 255, 0.34); --seg-bg: rgba(255, 255, 255, 0.16);
+  --accent: #2dd4bf; --accent-ink: #0f766e; --on-accent: #0b1f33;
+  --gold: #d9b45c; --on-gold: #0b1f33;
+  --warn: #e87722; --on-warn: #0b1f33; --warn-ink: #b4540f; --warn-text: #ffa24d;
+  --new: #2dd4bf; --on-new: #0b1f33;
+  --surface: #ffffff; --ink: #0b1f33; --ink-2: #465a70; --line: rgba(11, 31, 51, 0.3); --stitch: rgba(15, 118, 110, 0.55);
+  --shadow: 0 calc(var(--d, 1px) * 10) calc(var(--d, 1px) * 30) rgba(0, 0, 0, 0.35);
+  --card-border-w: 0; --focus: #f5c14b; --focus-s: #0b1f33;
+  --ticker-bg: #071626; --ticker-ink: #ffffff; --ticker-label-bg: #2dd4bf; --ticker-label-ink: #0b1f33; --ticker-line: #d9b45c; --ticker-warn: #ffa24d;
+}
+
+:root[data-theme="dark"] {
+  --bg-1: #0f1217; --bg-2: #171c24; --twill: rgba(255, 255, 255, 0.03);
+  --on-bg: #f4f6f9; --on-bg-2: #aab5c4; --rule: rgba(255, 255, 255, 0.3); --seg-bg: rgba(255, 255, 255, 0.16);
+  --accent: #2dd4bf; --accent-ink: #5eead4; --on-accent: #0b1f33;
+  --gold: #e0bb62; --on-gold: #1a1304;
+  --warn: #f08a2c; --on-warn: #1a0e00; --warn-ink: #ffb066; --warn-text: #ffb066;
+  --new: #2dd4bf; --on-new: #0b1f33;
+  --surface: #1c222c; --ink: #f4f6f9; --ink-2: #b3bfce; --line: rgba(255, 255, 255, 0.22); --stitch: rgba(255, 255, 255, 0.26);
+  --shadow: 0 calc(var(--d, 1px) * 10) calc(var(--d, 1px) * 30) rgba(0, 0, 0, 0.5);
+  --card-border-w: 0; --focus: #f5c14b; --focus-s: #f5c14b;
+  --ticker-bg: #0a0c10; --ticker-ink: #f4f6f9; --ticker-label-bg: #2dd4bf; --ticker-label-ink: #0b1f33; --ticker-line: #e0bb62; --ticker-warn: #ffb066;
+}
+
+:root[data-theme="light"] {
+  --bg-1: #eef2f6; --bg-2: #e2e9f0; --twill: rgba(11, 31, 51, 0.035);
+  --on-bg: #0b1f33; --on-bg-2: #43566c; --rule: rgba(11, 31, 51, 0.3); --seg-bg: rgba(11, 31, 51, 0.14);
+  --accent: #0d6b63; --accent-ink: #0d6b63; --on-accent: #ffffff;
+  --gold: #e3bd5a; --on-gold: #0b1f33;
+  --warn: #e87722; --on-warn: #0b1f33; --warn-ink: #a84e0c; --warn-text: #a84e0c;
+  --new: #0f766e; --on-new: #ffffff;
+  --surface: #ffffff; --ink: #0b1f33; --ink-2: #43566c; --line: rgba(11, 31, 51, 0.25); --stitch: rgba(11, 31, 51, 0.3);
+  --shadow: 0 calc(var(--d, 1px) * 8) calc(var(--d, 1px) * 24) rgba(11, 31, 51, 0.13);
+  --card-border-w: 0; --focus: #0b1f33; --focus-s: #0b1f33;
+  --ticker-bg: #ffffff; --ticker-ink: #0b1f33; --ticker-label-bg: #0b1f33; --ticker-label-ink: #ffffff; --ticker-line: #0f766e; --ticker-warn: #a84e0c;
+}
+
+:root[data-theme="highcontrast"] {
+  --bg-1: #000000; --bg-2: #000000; --twill: transparent;
+  --on-bg: #ffffff; --on-bg-2: #ffffff; --rule: #ffffff; --seg-bg: rgba(255, 255, 255, 0.35);
+  --accent: #ffe600; --accent-ink: #ffe600; --on-accent: #000000;
+  --gold: #ffe600; --on-gold: #000000;
+  --warn: #ff9f1c; --on-warn: #000000; --warn-ink: #ffb13b; --warn-text: #ffb13b;
+  --new: #00e5ff; --on-new: #000000;
+  --surface: #000000; --ink: #ffffff; --ink-2: #ffffff; --line: #ffffff; --stitch: #ffffff;
+  --shadow: none;
+  --card-border-w: 3; --focus: #00e5ff; --focus-s: #00e5ff;
+  --ticker-bg: #000000; --ticker-ink: #ffffff; --ticker-label-bg: #ffe600; --ticker-label-ink: #000000; --ticker-line: #ffffff; --ticker-warn: #ffb13b;
+}
+
+/* Matches the colours of the apps.cooneen.com staff portal (orange, blue, charcoal on light grey). */
+:root[data-theme="portal"] {
+  --bg-1: #f0f0f0; --bg-2: #e6e6e6; --twill: rgba(20, 69, 110, 0.04);
+  --on-bg: #1a1a1a; --on-bg-2: #555555; --rule: rgba(20, 69, 110, 0.35); --seg-bg: rgba(20, 69, 110, 0.15);
+  --accent: #a04a0a; --accent-ink: #a04a0a; --on-accent: #ffffff;
+  --gold: #14456e; --on-gold: #ffffff;
+  --warn: #dc2626; --on-warn: #ffffff; --warn-ink: #b91c1c; --warn-text: #b91c1c;
+  --new: #e87722; --on-new: #1a1a1a;
+  --surface: #ffffff; --ink: #1a1a1a; --ink-2: #555555; --line: rgba(0, 0, 0, 0.22); --stitch: rgba(232, 119, 34, 0.7);
+  --shadow: 0 calc(var(--d, 1px) * 8) calc(var(--d, 1px) * 24) rgba(0, 0, 0, 0.14);
+  --card-border-w: 0; --focus: #14456e; --focus-s: #14456e;
+  --ticker-bg: #1e1e1e; --ticker-ink: #ffffff; --ticker-label-bg: #e87722; --ticker-label-ink: #1a1a1a; --ticker-line: #e87722; --ticker-warn: #ff9f4d;
+}
